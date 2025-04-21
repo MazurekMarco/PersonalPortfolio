@@ -73,41 +73,118 @@ export default function Skills() {
         }}
         whileHover={{ scale: 1.02 }}
       >
-        <div className="flex justify-between items-center mb-1">
-          <h4 className="text-gray-700 dark:text-gray-300 font-medium flex items-center">
+        <div className="flex justify-between items-center mb-1.5">
+          <motion.h4 
+            className="text-gray-700 dark:text-gray-300 font-medium flex items-center gap-1.5"
+            whileHover={{ x: 3 }}
+            transition={{ duration: 0.2 }}
+          >
+            {colorScheme === "primary" ? (
+              <span className="h-2 w-2 rounded-full bg-primary-500 inline-block flex-shrink-0"></span>
+            ) : (
+              <span className="h-2 w-2 rounded-full bg-secondary-500 inline-block flex-shrink-0"></span>
+            )}
             {skill.name}
-          </h4>
-          <motion.span 
-            className="text-sm font-medium"
+          </motion.h4>
+          <motion.div
+            className="relative"
             initial={{ opacity: 0 }}
             animate={isVisible ? { opacity: 1 } : { opacity: 0 }}
             transition={{ 
               duration: 0.3, 
               delay: 1.2 + (index * 0.1)
             }}
-            style={{ 
-              color: colorScheme === "primary" ? "var(--primary)" : "var(--secondary)",
-              textShadow: "0 0 10px rgba(79, 70, 229, 0.3)"
+          >
+            <motion.span 
+              className="text-sm font-medium relative z-10"
+              style={{ 
+                color: colorScheme === "primary" ? "var(--primary)" : "var(--secondary)",
+              }}
+              whileHover={{
+                textShadow: "0 0 8px rgba(79, 70, 229, 0.5)",
+                transition: { duration: 0.2 }
+              }}
+            >
+              {skill.label || `${skill.level}%`}
+            </motion.span>
+            <motion.span 
+              className="absolute -inset-1 rounded-full bg-gray-100 dark:bg-gray-700/30 -z-10"
+              initial={{ scale: 0 }}
+              whileHover={{ scale: 1 }}
+              transition={{ duration: 0.2 }}
+            />
+          </motion.div>
+        </div>
+        
+        <div className="relative">
+          {/* Outer container with scale effect */}
+          <motion.div 
+            className="h-3 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden shadow-inner relative"
+            whileHover={{ 
+              height: "14px",
+              transition: { duration: 0.2 }
             }}
           >
-            {skill.label || `${skill.level}%`}
-          </motion.span>
-        </div>
-        <div className="h-2.5 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden shadow-inner">
-          <motion.div 
-            className={`h-full rounded-full ${
-              colorScheme === "primary" 
-                ? "bg-gradient-to-r from-primary-600 to-secondary-500" 
-                : "bg-gradient-to-r from-secondary-500 to-primary-600"
-            }`}
-            initial={{ width: "0%" }}
-            animate={isVisible ? { width: `${skill.level}%` } : { width: "0%" }}
-            transition={{ 
-              duration: 0.8, 
-              delay: 0.8 + (index * 0.1), 
-              ease: "easeOut"
-            }}
-          />
+            {/* Progress fill */}
+            <motion.div 
+              className={`h-full rounded-full ${
+                colorScheme === "primary" 
+                  ? "bg-gradient-to-r from-primary-600 to-secondary-500" 
+                  : "bg-gradient-to-r from-secondary-500 to-primary-600"
+              }`}
+              initial={{ width: "0%" }}
+              animate={isVisible ? { width: `${skill.level}%` } : { width: "0%" }}
+              transition={{ 
+                duration: 0.8, 
+                delay: 0.8 + (index * 0.1), 
+                ease: "easeOut"
+              }}
+              style={{
+                boxShadow: `0 0 10px ${colorScheme === "primary" ? "rgba(79, 70, 229, 0.5)" : "rgba(59, 130, 246, 0.5)"}`
+              }}
+            >
+              {/* Animated shine effect */}
+              <motion.div 
+                className="absolute top-0 bottom-0 left-0 w-20 bg-white/20 skew-x-[30deg]"
+                animate={{ 
+                  x: ["0%", "100%"],
+                }}
+                transition={{
+                  duration: 2,
+                  repeat: Infinity,
+                  repeatDelay: index + 2,
+                  ease: "easeInOut",
+                }}
+              />
+            </motion.div>
+            
+            {/* Animated dots at high percentages */}
+            {skill.level >= 85 && (
+              <motion.div 
+                className="absolute right-1 top-1/2 -translate-y-1/2 h-1.5 w-1.5 rounded-full bg-white/80"
+                animate={{ 
+                  opacity: [0.5, 1, 0.5],
+                  scale: [0.8, 1.2, 0.8]
+                }}
+                transition={{
+                  duration: 2,
+                  repeat: Infinity,
+                  repeatType: "reverse",
+                }}
+              />
+            )}
+          </motion.div>
+          
+          {/* Small markers */}
+          <div className="absolute top-0 left-0 w-full h-full pointer-events-none">
+            {[25, 50, 75].map((mark) => (
+              <div 
+                key={mark}
+                className="absolute top-0 bottom-0 w-px bg-gray-300/50 dark:bg-gray-600/50"
+                style={{ left: `${mark}%` }}
+              />
+            ))}
+          </div>
         </div>
       </motion.div>
     );

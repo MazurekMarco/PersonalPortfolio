@@ -42,81 +42,60 @@ export default function LanguageToggle() {
 
   return (
     <div className="flex items-center gap-2">
-      <div className="flex items-center space-x-3">
-        <motion.div
-          className="flex h-5 w-5 cursor-pointer items-center justify-center rounded-full overflow-hidden"
-          animate="en"
-          variants={flagIconVariants}
-          onClick={() => language !== 'en' && toggleLanguage()}
-          whileHover={{ scale: 1.1 }}
-          whileTap={{ scale: 0.95 }}
-        >
-          <span className="material-icons text-sm" style={{ color: language === 'en' ? '#3b82f6' : '#9ca3af' }}>🇬🇧</span>
-        </motion.div>
+      <motion.button 
+        onClick={toggleLanguage}
+        className="relative h-7 w-14 overflow-hidden rounded-full border-2 border-gray-200 
+                  dark:border-gray-700 shadow-inner cursor-pointer"
+        animate={language}
+        variants={toggleVariants}
+        whileHover={{ 
+          boxShadow: '0 0 8px rgba(79, 70, 229, 0.5)',
+          scale: 1.05 
+        }}
+        whileTap={{ scale: 0.95 }}
+        transition={{ duration: 0.2 }}
+        aria-label={`Switch to ${language === 'en' ? 'Italian' : 'English'} language`}
+      >
+        <div className="absolute inset-0 bg-gradient-to-r from-blue-100 to-red-100 dark:from-blue-900/30 dark:to-red-900/30 opacity-30"></div>
         
-        <motion.button 
-          onClick={toggleLanguage}
-          className="relative h-7 w-14 overflow-hidden rounded-full border-2 border-gray-200 
-                    dark:border-gray-700 shadow-inner cursor-pointer"
+        <motion.div 
+          className="absolute top-0.5 bottom-0.5 w-5 rounded-full 
+                    bg-gradient-to-b from-primary-500 to-secondary-500 shadow-lg"
           animate={language}
-          variants={toggleVariants}
-          whileHover={{ boxShadow: '0 0 8px rgba(79, 70, 229, 0.5)' }}
-          whileTap={{ scale: 0.95 }}
-          transition={{ duration: 0.2 }}
-          aria-label={`Switch to ${language === 'en' ? 'Italian' : 'English'} language`}
-        >
-          <div className="absolute inset-0 bg-gradient-to-r from-blue-100 to-red-100 dark:from-blue-900/30 dark:to-red-900/30 opacity-30"></div>
-          
-          <motion.div 
-            className="absolute top-0.5 bottom-0.5 w-5 rounded-full 
-                       bg-gradient-to-b from-primary-500 to-secondary-500 shadow-lg"
-            animate={language}
-            variants={sliderVariants}
-            transition={{ type: "spring", stiffness: 500, damping: 30 }}
-          />
-          
-          <div className="absolute inset-0 flex items-center justify-between px-2.5 text-xs font-bold tracking-wider">
-            <AnimatePresence mode="wait" initial={false}>
-              <motion.span 
-                key={`en-${language === 'en'}`}
-                className={`${language === 'en' ? 'text-white' : 'text-gray-500 dark:text-gray-400'}`}
-                initial="initial"
-                animate="animate"
-                exit="exit"
-                variants={textVariants}
-                transition={{ duration: 0.2 }}
-              >
-                EN
-              </motion.span>
-            </AnimatePresence>
-            
-            <AnimatePresence mode="wait" initial={false}>
-              <motion.span 
-                key={`it-${language === 'it'}`}
-                className={`${language === 'it' ? 'text-white' : 'text-gray-500 dark:text-gray-400'}`}
-                initial="initial"
-                animate="animate"
-                exit="exit"
-                variants={textVariants}
-                transition={{ duration: 0.2 }}
-              >
-                IT
-              </motion.span>
-            </AnimatePresence>
-          </div>
-        </motion.button>
+          variants={sliderVariants}
+          transition={{ type: "spring", stiffness: 500, damping: 30 }}
+        />
         
-        <motion.div
-          className="flex h-5 w-5 cursor-pointer items-center justify-center rounded-full overflow-hidden"
-          animate="it"
-          variants={flagIconVariants}
-          onClick={() => language !== 'it' && toggleLanguage()}
-          whileHover={{ scale: 1.1 }}
-          whileTap={{ scale: 0.95 }}
-        >
-          <span className="material-icons text-sm" style={{ color: language === 'it' ? '#ef4444' : '#9ca3af' }}>🇮🇹</span>
-        </motion.div>
-      </div>
+        <div className="absolute inset-0 flex items-center justify-between px-2.5 text-xs font-bold tracking-wider">
+          <AnimatePresence mode="wait" initial={false}>
+            <motion.span 
+              key={`en-${language === 'en'}`}
+              className={`${language === 'en' ? 'text-white' : 'text-gray-500 dark:text-gray-400'}`}
+              initial="initial"
+              animate="animate"
+              exit="exit"
+              variants={textVariants}
+              transition={{ duration: 0.2 }}
+            >
+              EN
+            </motion.span>
+          </AnimatePresence>
+          
+          <AnimatePresence mode="wait" initial={false}>
+            <motion.span 
+              key={`it-${language === 'it'}`}
+              className={`${language === 'it' ? 'text-white' : 'text-gray-500 dark:text-gray-400'}`}
+              initial="initial"
+              animate="animate"
+              exit="exit"
+              variants={textVariants}
+              transition={{ duration: 0.2 }}
+            >
+              IT
+            </motion.span>
+          </AnimatePresence>
+        </div>
+      </motion.button>
     </div>
   );
 }

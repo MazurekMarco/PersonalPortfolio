@@ -13,16 +13,18 @@ interface NavLinkProps {
 
 function NavLink({ href, text, onClick }: NavLinkProps) {
   return (
-    <motion.div className="relative overflow-hidden">
+    <motion.div className="relative px-1 py-0.5 overflow-hidden group">
       <motion.a 
         href={href}
         onClick={onClick}
-        className="relative text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-500 transition-colors"
+        className="relative text-gray-600 dark:text-gray-300 font-medium transition-colors z-10"
         whileHover="hover"
       >
         {text}
+        
+        {/* Underline effect */}
         <motion.span 
-          className="absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r from-primary-500 to-secondary-500 rounded-full origin-left"
+          className="absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r from-primary-500 to-secondary-500 rounded-full origin-left z-0"
           initial={{ scaleX: 0 }}
           variants={{
             hover: { 
@@ -31,6 +33,33 @@ function NavLink({ href, text, onClick }: NavLinkProps) {
             }
           }}
         />
+        
+        {/* Background glow effect */}
+        <motion.span 
+          className="absolute bottom-0 left-0 right-0 h-full bg-primary-500/10 dark:bg-primary-500/20 rounded-md -z-10"
+          initial={{ opacity: 0, y: 10 }}
+          variants={{
+            hover: { 
+              opacity: 1, 
+              y: 0,
+              transition: { duration: 0.2 }
+            }
+          }}
+        />
+        
+        {/* Text effect */}
+        <motion.span 
+          className="absolute inset-0 flex items-center justify-center text-primary-600 dark:text-primary-400 font-medium opacity-0 z-10"
+          initial={{ opacity: 0 }}
+          variants={{
+            hover: { 
+              opacity: 1,
+              transition: { duration: 0.2 } 
+            }
+          }}
+        >
+          {text}
+        </motion.span>
       </motion.a>
     </motion.div>
   );
