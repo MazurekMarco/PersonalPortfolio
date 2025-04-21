@@ -75,14 +75,14 @@ export default function Skills() {
       >
         <div className="flex justify-between items-center mb-1.5">
           <motion.h4 
-            className="text-gray-700 dark:text-gray-300 font-medium flex items-center gap-1.5"
+            className="text-gray-700 dark:text-gray-200 font-medium flex items-center gap-1.5"
             whileHover={{ x: 3 }}
             transition={{ duration: 0.2 }}
           >
             {colorScheme === "primary" ? (
-              <span className="h-2 w-2 rounded-full bg-primary-500 inline-block flex-shrink-0"></span>
+              <span className="h-2.5 w-2.5 rounded-full bg-primary-500 dark:bg-primary-400 inline-block flex-shrink-0 ring-2 ring-primary-500/10 dark:ring-primary-400/20"></span>
             ) : (
-              <span className="h-2 w-2 rounded-full bg-secondary-500 inline-block flex-shrink-0"></span>
+              <span className="h-2.5 w-2.5 rounded-full bg-secondary-500 dark:bg-secondary-400 inline-block flex-shrink-0 ring-2 ring-secondary-500/10 dark:ring-secondary-400/20"></span>
             )}
             {skill.name}
           </motion.h4>
@@ -119,7 +119,7 @@ export default function Skills() {
         <div className="relative">
           {/* Outer container with scale effect */}
           <motion.div 
-            className="h-3 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden shadow-inner relative"
+            className="h-3 bg-gray-200 dark:bg-gray-800 rounded-full overflow-hidden shadow-inner relative border border-gray-300/10 dark:border-gray-600/50"
             whileHover={{ 
               height: "14px",
               transition: { duration: 0.2 }
@@ -129,8 +129,8 @@ export default function Skills() {
             <motion.div 
               className={`h-full rounded-full ${
                 colorScheme === "primary" 
-                  ? "bg-gradient-to-r from-primary-600 to-secondary-500" 
-                  : "bg-gradient-to-r from-secondary-500 to-primary-600"
+                  ? "bg-gradient-to-r from-primary-600 to-secondary-500 dark:from-primary-500 dark:to-secondary-400" 
+                  : "bg-gradient-to-r from-secondary-500 to-primary-600 dark:from-secondary-500 dark:to-primary-400"
               }`}
               initial={{ width: "0%" }}
               animate={isVisible ? { width: `${skill.level}%` } : { width: "0%" }}
@@ -145,7 +145,7 @@ export default function Skills() {
             >
               {/* Animated shine effect */}
               <motion.div 
-                className="absolute top-0 bottom-0 left-0 w-20 bg-white/20 skew-x-[30deg]"
+                className="absolute top-0 bottom-0 left-0 w-20 bg-white/20 dark:bg-white/30 skew-x-[30deg]"
                 animate={{ 
                   x: ["0%", "100%"],
                 }}
@@ -161,9 +161,9 @@ export default function Skills() {
             {/* Animated dots at high percentages */}
             {skill.level >= 85 && (
               <motion.div 
-                className="absolute right-1 top-1/2 -translate-y-1/2 h-1.5 w-1.5 rounded-full bg-white/80"
+                className="absolute right-1 top-1/2 -translate-y-1/2 h-2 w-2 rounded-full bg-white/90 dark:bg-white ring-2 ring-white/30"
                 animate={{ 
-                  opacity: [0.5, 1, 0.5],
+                  opacity: [0.7, 1, 0.7],
                   scale: [0.8, 1.2, 0.8]
                 }}
                 transition={{
@@ -176,13 +176,18 @@ export default function Skills() {
           </motion.div>
           
           {/* Small markers */}
-          <div className="absolute top-0 left-0 w-full h-full pointer-events-none">
+          <div className="absolute top-0 left-0 w-full h-full pointer-events-none flex justify-between px-[24.5%]">
             {[25, 50, 75].map((mark) => (
               <div 
                 key={mark}
-                className="absolute top-0 bottom-0 w-px bg-gray-300/50 dark:bg-gray-600/50"
-                style={{ left: `${mark}%` }}
-              />
+                className="relative h-full"
+              >
+                <div className="absolute top-0 bottom-0 w-[2px] bg-gray-300/40 dark:bg-gray-500/60"
+                     style={{ left: 0 }} />
+                <div className="absolute -bottom-3 left-1/2 -translate-x-1/2 text-[8px] font-medium text-gray-400 dark:text-gray-500 hidden md:block">
+                  {mark}%
+                </div>
+              </div>
             ))}
           </div>
         </div>
