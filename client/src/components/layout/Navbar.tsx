@@ -11,59 +11,20 @@ interface NavLinkProps {
   onClick?: () => void;
 }
 
-function NavLink({ href, text, onClick }: NavLinkProps) {
+const NavLink = ({ href, text, onClick }: NavLinkProps) => {
   return (
-    <motion.div className="relative px-1 py-0.5 overflow-hidden group">
-      <motion.a 
-        href={href}
-        onClick={onClick}
-        className="relative text-gray-600 dark:text-gray-300 font-medium transition-colors z-10"
-        whileHover="hover"
-      >
-        {text}
-        
-        {/* Underline effect */}
-        <motion.span 
-          className="absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r from-primary-500 to-secondary-500 rounded-full origin-left z-0"
-          initial={{ scaleX: 0 }}
-          variants={{
-            hover: { 
-              scaleX: 1,
-              transition: { duration: 0.3, ease: "easeOut" }
-            }
-          }}
-        />
-        
-        {/* Background glow effect */}
-        <motion.span 
-          className="absolute bottom-0 left-0 right-0 h-full bg-primary-500/10 dark:bg-primary-500/20 rounded-md -z-10"
-          initial={{ opacity: 0, y: 10 }}
-          variants={{
-            hover: { 
-              opacity: 1, 
-              y: 0,
-              transition: { duration: 0.2 }
-            }
-          }}
-        />
-        
-        {/* Text effect */}
-        <motion.span 
-          className="absolute inset-0 flex items-center justify-center text-primary-600 dark:text-primary-400 font-medium opacity-0 z-10"
-          initial={{ opacity: 0 }}
-          variants={{
-            hover: { 
-              opacity: 1,
-              transition: { duration: 0.2 } 
-            }
-          }}
-        >
-          {text}
-        </motion.span>
-      </motion.a>
-    </motion.div>
+    <motion.a
+      href={href}
+      onClick={onClick}
+      className="text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition-colors relative group"
+      whileHover={{ scale: 1.05 }}
+      whileTap={{ scale: 0.95 }}
+    >
+      {text}
+      <span className="absolute left-0 bottom-0 w-0 h-0.5 bg-primary group-hover:w-full transition-all duration-300" />
+    </motion.a>
   );
-}
+};
 
 export default function Navbar() {
   const { t } = useLanguage();
@@ -90,14 +51,14 @@ export default function Navbar() {
   return (
     <header className={cn(
       "fixed top-0 left-0 right-0 z-50 transition-colors duration-300",
-      "bg-white/80 dark:bg-gray-900/80 backdrop-blur-md",
-      "shadow-sm dark:shadow-gray-800/10",
-      isScrolled ? "shadow-md" : ""
+      "bg-white/95 dark:bg-gray-900/95 backdrop-blur-md",
+      "border-b border-gray-200 dark:border-gray-800",
+      isScrolled ? "shadow-sm" : ""
     )}>
       <nav className="container mx-auto px-4 md:px-6 py-4 flex items-center justify-between">
         {/* Logo */}
-        <a href="#hero" className="text-xl font-display font-bold text-primary-600 dark:text-primary-500 flex items-center gap-2">
-          <span className="material-icons animate-float">code</span>
+        <a href="#hero" className="text-xl font-display font-bold text-gray-900 dark:text-white hover:text-primary dark:hover:text-primary transition-colors flex items-center gap-2">
+          <span className="material-icons text-primary">code</span>
           <span>MM</span>
         </a>
         
@@ -131,46 +92,18 @@ export default function Navbar() {
       {/* Mobile Menu */}
       <motion.div 
         className={cn(
-          "md:hidden bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-800 shadow-lg",
+          "md:hidden fixed inset-x-0 top-[73px] p-4 bg-white/95 dark:bg-gray-900/95 backdrop-blur-md border-b border-gray-200 dark:border-gray-800",
+          "flex flex-col gap-4",
           isMenuOpen ? "block" : "hidden"
         )}
         initial={{ opacity: 0, y: -10 }}
         animate={{ opacity: isMenuOpen ? 1 : 0, y: isMenuOpen ? 0 : -10 }}
         transition={{ duration: 0.2 }}
       >
-        <div className="container mx-auto px-4 py-3 flex flex-col space-y-4">
-          <motion.div 
-            initial={{ opacity: 0, x: -10 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.3, delay: 0.1 }}
-          >
-            <NavLink href="#about" text={t("nav.about")} onClick={closeMenu} />
-          </motion.div>
-          
-          <motion.div 
-            initial={{ opacity: 0, x: -10 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.3, delay: 0.2 }}
-          >
-            <NavLink href="#skills" text={t("nav.skills")} onClick={closeMenu} />
-          </motion.div>
-          
-          <motion.div 
-            initial={{ opacity: 0, x: -10 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.3, delay: 0.3 }}
-          >
-            <NavLink href="#projects" text={t("nav.projects")} onClick={closeMenu} />
-          </motion.div>
-          
-          <motion.div 
-            initial={{ opacity: 0, x: -10 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.3, delay: 0.4 }}
-          >
-            <NavLink href="#contact" text={t("nav.contact")} onClick={closeMenu} />
-          </motion.div>
-        </div>
+        <NavLink href="#about" text={t("nav.about")} onClick={closeMenu} />
+        <NavLink href="#skills" text={t("nav.skills")} onClick={closeMenu} />
+        <NavLink href="#projects" text={t("nav.projects")} onClick={closeMenu} />
+        <NavLink href="#contact" text={t("nav.contact")} onClick={closeMenu} />
       </motion.div>
     </header>
   );

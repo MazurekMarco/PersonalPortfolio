@@ -14,6 +14,7 @@ export const translations = {
       quote: "\"Doubt has killed more dreams than incompetence\"",
       contact: "Get in Touch",
       projects: "See My Work",
+      downloadCV: "Download CV",
     },
     about: {
       title: "About Me",
@@ -151,6 +152,7 @@ export const translations = {
       quote: "\"Il dubbio ha ucciso più sogni dell'incompetenza\"",
       contact: "Contattami",
       projects: "Vedi i Miei Progetti",
+      downloadCV: "Scarica CV",
     },
     about: {
       title: "Chi Sono",
