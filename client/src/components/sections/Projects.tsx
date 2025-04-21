@@ -25,7 +25,7 @@ export default function Projects() {
       title: "projects.project1.title",
       description: "projects.project1.description",
       tags: ["React", "Tailwind"],
-      image: "/project1-screenshot.png",
+      image: "./project1-screenshot.png",
       link: "https://mazurekmarco.github.io/retro-arcade/"
     },
     {
