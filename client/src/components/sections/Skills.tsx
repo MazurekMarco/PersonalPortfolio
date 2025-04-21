@@ -63,7 +63,7 @@ export default function Skills() {
     return (
       <motion.div 
         key={index} 
-        className={`mb-${index === totalSkills - 1 ? '0' : '4'}`}
+        className={`mb-${index === totalSkills - 1 ? '0' : '5'}`}
         initial={{ opacity: 0, y: 10 }}
         animate={isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
         transition={{ 
@@ -72,43 +72,28 @@ export default function Skills() {
           ease: "easeOut"
         }}
       >
-        <div className="flex items-center mb-1">
+        <div className="flex items-center justify-between mb-2">
           <motion.h4 
-            className="text-gray-300 font-medium flex items-center gap-1.5"
+            className="text-gray-700 dark:text-gray-300 font-medium flex items-center gap-1.5"
           >
             <span className="h-2 w-2 rounded-full bg-blue-400 inline-block flex-shrink-0"></span>
             {skill.name}
           </motion.h4>
-        </div>
-        
-        <div className="relative group">
-          {/* Track line with percentage markers */}
-          <div className="h-[1px] bg-gray-600 mb-4 mt-1 relative">
-            {[25, 50, 75].map((mark) => (
-              <div 
-                key={mark}
-                className="absolute bottom-0 w-[1px] h-2 bg-gray-600"
-                style={{ left: `${mark}%` }}
-              />
-            ))}
-          </div>
           
-          {/* Skill percentage bubble */}
+          {/* Percentage text */}
           <div 
-            className="absolute top-0 -translate-y-1/2 z-10 bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-100 text-xs font-medium px-1.5 py-0.5 rounded transition-all"
-            style={{ 
-              left: `${skill.level}%`, 
-              transform: 'translateX(-50%) translateY(-50%)'
-            }}
+            className="text-sm text-gray-700 dark:text-white font-medium opacity-80"
           >
             {skill.label || `${skill.level}%`}
           </div>
-          
+        </div>
+        
+        <div className="relative group">
           {/* Bar track */}
-          <div className="h-1.5 bg-gray-700 rounded-full overflow-hidden relative">
+          <div className="h-1.5 bg-gray-300 dark:bg-gray-700 rounded-full overflow-hidden relative">
             {/* Progress fill */}
             <motion.div 
-              className="h-full rounded-full bg-blue-400"
+              className="h-full rounded-full bg-blue-500 dark:bg-blue-400"
               initial={{ width: "0%" }}
               animate={isVisible ? { width: `${skill.level}%` } : { width: "0%" }}
               transition={{ 
@@ -132,14 +117,6 @@ export default function Skills() {
               />
             </motion.div>
           </div>
-          
-          {/* Skill end marker */}
-          {skill.level > 0 && (
-            <div 
-              className="absolute -top-1 h-3 w-3 rounded-full bg-blue-400"
-              style={{ left: `${skill.level}%`, transform: 'translateX(-50%)' }}
-            />
-          )}
         </div>
       </motion.div>
     );
@@ -192,11 +169,11 @@ export default function Skills() {
   };
 
   return (
-    <section id="skills" ref={sectionRef} className="py-20 md:py-32 bg-gray-900 relative overflow-hidden">
+    <section id="skills" ref={sectionRef} className="py-20 md:py-32 bg-gray-100 dark:bg-gray-900 relative overflow-hidden">
       {/* Background decorative elements */}
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
         <motion.div 
-          className="absolute top-1/4 left-0 w-64 h-64 bg-blue-500 rounded-full filter blur-[100px] opacity-5"
+          className="absolute top-1/4 left-0 w-64 h-64 bg-blue-500 rounded-full filter blur-[100px] opacity-5 dark:opacity-5"
           animate={{ 
             x: [0, 50, 0],
             y: [0, 30, 0],
@@ -208,7 +185,7 @@ export default function Skills() {
           }}
         />
         <motion.div 
-          className="absolute bottom-1/4 right-0 w-96 h-96 bg-blue-700 rounded-full filter blur-[120px] opacity-5"
+          className="absolute bottom-1/4 right-0 w-96 h-96 bg-blue-700 rounded-full filter blur-[120px] opacity-5 dark:opacity-5"
           animate={{ 
             x: [0, -70, 0],
             y: [0, -40, 0],
@@ -235,10 +212,10 @@ export default function Skills() {
             }
           }}
         >
-          <h2 className="text-3xl md:text-4xl font-display font-bold mb-6 text-white">
+          <h2 className="text-3xl md:text-4xl font-display font-bold mb-6 text-gray-800 dark:text-white">
             {t("skills.title")}
           </h2>
-          <p className="text-lg text-gray-300">
+          <p className="text-lg text-gray-600 dark:text-gray-300">
             {t("skills.subtitle")}
           </p>
         </motion.div>
@@ -250,12 +227,12 @@ export default function Skills() {
             variants={cardVariants}
             initial="hidden"
             animate={isVisible ? "visible" : "hidden"}
-            className="bg-gray-900 rounded-lg p-6 shadow-lg border border-gray-800
+            className="bg-white dark:bg-gray-900 rounded-lg p-6 shadow-lg border border-gray-200 dark:border-gray-800
                      transition duration-500 group relative"
           >
             <div className="flex items-center mb-5">
-              <span className="material-icons text-blue-400 text-2xl mr-3">code</span>
-              <h3 className="text-xl font-display font-semibold text-white">
+              <span className="material-icons text-blue-500 dark:text-blue-400 text-2xl mr-3">code</span>
+              <h3 className="text-xl font-display font-semibold text-gray-800 dark:text-white">
                 {t("skills.programming.title")}
               </h3>
             </div>
@@ -277,12 +254,12 @@ export default function Skills() {
             variants={cardVariants}
             initial="hidden"
             animate={isVisible ? "visible" : "hidden"}
-            className="bg-gray-900 rounded-lg p-6 shadow-lg border border-gray-800
+            className="bg-white dark:bg-gray-900 rounded-lg p-6 shadow-lg border border-gray-200 dark:border-gray-800
                      transition duration-500 group relative"
           >
             <div className="flex items-center mb-5">
-              <span className="material-icons text-blue-400 text-2xl mr-3">build</span>
-              <h3 className="text-xl font-display font-semibold text-white">
+              <span className="material-icons text-blue-500 dark:text-blue-400 text-2xl mr-3">build</span>
+              <h3 className="text-xl font-display font-semibold text-gray-800 dark:text-white">
                 {t("skills.tools.title")}
               </h3>
             </div>
@@ -304,12 +281,12 @@ export default function Skills() {
             variants={cardVariants}
             initial="hidden"
             animate={isVisible ? "visible" : "hidden"}
-            className="bg-gray-900 rounded-lg p-6 shadow-lg border border-gray-800
+            className="bg-white dark:bg-gray-900 rounded-lg p-6 shadow-lg border border-gray-200 dark:border-gray-800
                      transition duration-500 group relative"
           >
             <div className="flex items-center mb-5">
-              <span className="material-icons text-blue-400 text-2xl mr-3">language</span>
-              <h3 className="text-xl font-display font-semibold text-white">
+              <span className="material-icons text-blue-500 dark:text-blue-400 text-2xl mr-3">language</span>
+              <h3 className="text-xl font-display font-semibold text-gray-800 dark:text-white">
                 {t("skills.languages.title")}
               </h3>
             </div>
@@ -325,7 +302,7 @@ export default function Skills() {
             ))}
             
             <motion.div 
-              className="flex items-center mt-8 p-4 rounded-lg bg-gray-800/70 border border-gray-700"
+              className="flex items-center mt-8 p-4 rounded-lg bg-gray-100 dark:bg-gray-800/70 border border-gray-300 dark:border-gray-700"
               initial={{ opacity: 0, y: 10 }}
               animate={isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
               transition={{ 
@@ -335,7 +312,7 @@ export default function Skills() {
               }}
             >
               <motion.span 
-                className="material-icons text-blue-400 mr-3"
+                className="material-icons text-blue-500 dark:text-blue-400 mr-3"
                 animate={{ 
                   rotate: [0, 10, 0, -10, 0],
                   scale: [1, 1.1, 1, 1.1, 1],
@@ -348,7 +325,7 @@ export default function Skills() {
               >
                 stars
               </motion.span>
-              <p className="text-sm text-gray-300">
+              <p className="text-sm text-gray-700 dark:text-gray-300">
                 {t("skills.languages.certification")}
               </p>
             </motion.div>
