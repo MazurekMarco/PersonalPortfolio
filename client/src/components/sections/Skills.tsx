@@ -334,7 +334,7 @@ export default function Skills() {
         
         {/* Additional Skills */}
         <motion.div 
-          className="mt-12 bg-gray-900 rounded-lg p-6 shadow-lg border border-gray-800"
+          className="mt-12 bg-white dark:bg-gray-900 rounded-lg p-8 shadow-lg border border-gray-200 dark:border-gray-800"
           initial={{ opacity: 0, y: 30 }}
           animate={isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
           transition={{ 
@@ -345,18 +345,53 @@ export default function Skills() {
         >
           <div className="flex flex-wrap gap-4 justify-center">
             {additionalSkills.map((skill, index) => (
-              <motion.span 
+              <motion.div
                 key={index}
-                className="px-4 py-2 text-gray-300 text-sm font-medium"
-                initial={{ opacity: 0 }}
-                animate={isVisible ? { opacity: 1 } : { opacity: 0 }}
+                className="relative group"
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={isVisible ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.9 }}
                 transition={{ 
                   duration: 0.3, 
-                  delay: 1.2 + (index * 0.05)
+                  delay: 1.2 + (index * 0.05),
+                  type: "spring",
+                  stiffness: 260,
+                  damping: 20
                 }}
+                whileHover={{ 
+                  scale: 1.05,
+                  transition: { duration: 0.2 }
+                }}
+                whileTap={{ scale: 0.95 }}
               >
-                {skill}
-              </motion.span>
+                {/* Background glow effect on hover */}
+                <motion.div 
+                  className="absolute inset-0 bg-blue-500/10 dark:bg-blue-500/20 rounded-md filter blur-sm"
+                  initial={{ opacity: 0 }}
+                  whileHover={{ opacity: 1 }}
+                  transition={{ duration: 0.2 }}
+                />
+                
+                {/* Pill background */}
+                <div className="px-5 py-2.5 rounded-md bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-800 dark:to-gray-900 border border-gray-300 dark:border-gray-700 relative z-10 overflow-hidden shadow-sm">
+                  {/* Animated shine effect */}
+                  <motion.div 
+                    className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 dark:via-white/10 to-transparent skew-x-[45deg] opacity-0"
+                    animate={{ 
+                      x: ["calc(-100% - 100px)", "calc(100% + 100px)"],
+                      opacity: [0, 0.4, 0], 
+                    }}
+                    transition={{
+                      duration: 1.5,
+                      repeat: Infinity,
+                      repeatDelay: 5 + (index * 0.8),
+                      ease: "easeInOut",
+                    }}
+                  />
+                  
+                  {/* Text content */}
+                  <span className="text-gray-800 dark:text-gray-200 font-medium relative z-10">{skill}</span>
+                </div>
+              </motion.div>
             ))}
           </div>
         </motion.div>
