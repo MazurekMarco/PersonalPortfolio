@@ -3,6 +3,38 @@ import { cn } from "@/lib/utils";
 import { useLanguage } from "@/context/LanguageContext";
 import ThemeToggle from "@/components/ui/ThemeToggle";
 import LanguageToggle from "@/components/ui/LanguageToggle";
+import { motion } from "framer-motion";
+
+interface NavLinkProps {
+  href: string;
+  text: string;
+  onClick?: () => void;
+}
+
+function NavLink({ href, text, onClick }: NavLinkProps) {
+  return (
+    <motion.div className="relative overflow-hidden">
+      <motion.a 
+        href={href}
+        onClick={onClick}
+        className="relative text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-500 transition-colors"
+        whileHover="hover"
+      >
+        {text}
+        <motion.span 
+          className="absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r from-primary-500 to-secondary-500 rounded-full origin-left"
+          initial={{ scaleX: 0 }}
+          variants={{
+            hover: { 
+              scaleX: 1,
+              transition: { duration: 0.3, ease: "easeOut" }
+            }
+          }}
+        />
+      </motion.a>
+    </motion.div>
+  );
+}
 
 export default function Navbar() {
   const { t } = useLanguage();
@@ -51,18 +83,10 @@ export default function Navbar() {
         
         {/* Desktop Navigation */}
         <div className="hidden md:flex items-center gap-6">
-          <a href="#about" className="text-gray-600 hover:text-primary-600 dark:text-gray-300 dark:hover:text-primary-500 transition-colors">
-            {t("nav.about")}
-          </a>
-          <a href="#skills" className="text-gray-600 hover:text-primary-600 dark:text-gray-300 dark:hover:text-primary-500 transition-colors">
-            {t("nav.skills")}
-          </a>
-          <a href="#projects" className="text-gray-600 hover:text-primary-600 dark:text-gray-300 dark:hover:text-primary-500 transition-colors">
-            {t("nav.projects")}
-          </a>
-          <a href="#contact" className="text-gray-600 hover:text-primary-600 dark:text-gray-300 dark:hover:text-primary-500 transition-colors">
-            {t("nav.contact")}
-          </a>
+          <NavLink href="#about" text={t("nav.about")} />
+          <NavLink href="#skills" text={t("nav.skills")} />
+          <NavLink href="#projects" text={t("nav.projects")} />
+          <NavLink href="#contact" text={t("nav.contact")} />
         </div>
         
         {/* Settings */}
@@ -76,37 +100,49 @@ export default function Navbar() {
       </nav>
       
       {/* Mobile Menu */}
-      <div className={cn(
-        "md:hidden bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-800 shadow-lg",
-        isMenuOpen ? "block" : "hidden"
-      )}>
+      <motion.div 
+        className={cn(
+          "md:hidden bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-800 shadow-lg",
+          isMenuOpen ? "block" : "hidden"
+        )}
+        initial={{ opacity: 0, y: -10 }}
+        animate={{ opacity: isMenuOpen ? 1 : 0, y: isMenuOpen ? 0 : -10 }}
+        transition={{ duration: 0.2 }}
+      >
         <div className="container mx-auto px-4 py-3 flex flex-col space-y-4">
-          <a href="#about" 
-            className="py-2 text-gray-600 hover:text-primary-600 dark:text-gray-300 dark:hover:text-primary-500 transition-colors" 
-            onClick={closeMenu}
+          <motion.div 
+            initial={{ opacity: 0, x: -10 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.3, delay: 0.1 }}
           >
-            {t("nav.about")}
-          </a>
-          <a href="#skills" 
-            className="py-2 text-gray-600 hover:text-primary-600 dark:text-gray-300 dark:hover:text-primary-500 transition-colors" 
-            onClick={closeMenu}
+            <NavLink href="#about" text={t("nav.about")} onClick={closeMenu} />
+          </motion.div>
+          
+          <motion.div 
+            initial={{ opacity: 0, x: -10 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.3, delay: 0.2 }}
           >
-            {t("nav.skills")}
-          </a>
-          <a href="#projects" 
-            className="py-2 text-gray-600 hover:text-primary-600 dark:text-gray-300 dark:hover:text-primary-500 transition-colors" 
-            onClick={closeMenu}
+            <NavLink href="#skills" text={t("nav.skills")} onClick={closeMenu} />
+          </motion.div>
+          
+          <motion.div 
+            initial={{ opacity: 0, x: -10 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.3, delay: 0.3 }}
           >
-            {t("nav.projects")}
-          </a>
-          <a href="#contact" 
-            className="py-2 text-gray-600 hover:text-primary-600 dark:text-gray-300 dark:hover:text-primary-500 transition-colors" 
-            onClick={closeMenu}
+            <NavLink href="#projects" text={t("nav.projects")} onClick={closeMenu} />
+          </motion.div>
+          
+          <motion.div 
+            initial={{ opacity: 0, x: -10 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.3, delay: 0.4 }}
           >
-            {t("nav.contact")}
-          </a>
+            <NavLink href="#contact" text={t("nav.contact")} onClick={closeMenu} />
+          </motion.div>
         </div>
-      </div>
+      </motion.div>
     </header>
   );
 }
