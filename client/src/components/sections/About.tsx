@@ -53,10 +53,10 @@ export default function About() {
           viewport={{ once: true }}
           variants={fadeUp}
         >
-          <h2 className="text-3xl md:text-4xl font-display font-bold mb-6 bg-gradient-to-r from-primary-600 to-secondary-500 bg-clip-text text-transparent">
+          <h2 className="text-3xl md:text-4xl font-display font-bold mb-6 text-gray-900 dark:text-white">
             {t("about.title")}
           </h2>
-          <p className="text-lg text-gray-600 dark:text-gray-300">
+          <p className="text-lg text-gray-700 dark:text-gray-200">
             {t("about.subtitle")}
           </p>
         </motion.div>
@@ -75,10 +75,10 @@ export default function About() {
                 <div className="mb-6">
                   <span className="material-icons text-5xl text-primary-500 opacity-80">person</span>
                 </div>
-                <h3 className="text-2xl font-display font-semibold mb-4">
+                <h3 className="text-2xl font-display font-semibold mb-4 text-gray-900 dark:text-white">
                   {t("about.who.title")}
                 </h3>
-                <p className="text-gray-600 dark:text-gray-300 mb-6">
+                <p className="text-gray-700 dark:text-gray-200 mb-6">
                   {t("about.who.content")}
                 </p>
                 
@@ -113,30 +113,30 @@ export default function About() {
           >
             <motion.div variants={fadeUp} className="about-card relative overflow-hidden rounded-2xl bg-white dark:bg-gray-800 shadow-lg p-6 border border-gray-200 dark:border-gray-700 hover:border-primary-500/30 dark:hover:border-primary-500/30 transition duration-300">
               <div className="absolute -top-10 -left-10 w-24 h-24 rounded-full bg-primary-500/10"></div>
-              <h3 className="text-xl font-display font-semibold mb-3 relative">
+              <h3 className="text-xl font-display font-semibold mb-3 relative text-gray-900 dark:text-white">
                 {t("about.journey.title")}
               </h3>
-              <p className="text-gray-600 dark:text-gray-300 relative">
+              <p className="text-gray-700 dark:text-gray-200 relative">
                 {t("about.journey.content")}
               </p>
             </motion.div>
             
             <motion.div variants={fadeUp} className="about-card relative overflow-hidden rounded-2xl bg-white dark:bg-gray-800 shadow-lg p-6 border border-gray-200 dark:border-gray-700 hover:border-primary-500/30 dark:hover:border-primary-500/30 transition duration-300">
               <div className="absolute -bottom-10 -right-10 w-24 h-24 rounded-full bg-secondary-500/10"></div>
-              <h3 className="text-xl font-display font-semibold mb-3 relative">
+              <h3 className="text-xl font-display font-semibold mb-3 relative text-gray-900 dark:text-white">
                 {t("about.approach.title")}
               </h3>
-              <p className="text-gray-600 dark:text-gray-300 relative">
+              <p className="text-gray-700 dark:text-gray-200 relative">
                 {t("about.approach.content")}
               </p>
             </motion.div>
             
             <motion.div variants={fadeUp} className="about-card relative overflow-hidden rounded-2xl bg-white dark:bg-gray-800 shadow-lg p-6 border border-gray-200 dark:border-gray-700 hover:border-primary-500/30 dark:hover:border-primary-500/30 transition duration-300">
               <div className="absolute -top-10 -right-10 w-24 h-24 rounded-full bg-primary-500/10"></div>
-              <h3 className="text-xl font-display font-semibold mb-3 relative">
+              <h3 className="text-xl font-display font-semibold mb-3 relative text-gray-900 dark:text-white">
                 {t("about.education.title")}
               </h3>
-              <ul className="text-gray-600 dark:text-gray-300 space-y-2 relative">
+              <ul className="text-gray-700 dark:text-gray-200 space-y-2 relative">
                 <li className="flex items-start">
                   <span className="material-icons text-primary-500 mr-2 text-sm mt-1">school</span>
                   <span>{t("about.education.items.cs")}</span>

@@ -74,8 +74,8 @@ export const translations = {
       subtitle: "Showcasing my latest work",
       viewProject: "View Project",
       project1: {
-        title: "Project One",
-        description: "Description of the first project. Technologies used and challenges overcome.",
+        title: "Retro Arcade Games",
+        description: "A web-based platform featuring classic arcade games playable directly in your browser. Built with modern web technologies to bring nostalgic gaming experiences to life.",
       },
       project2: {
         title: "Project Two",
@@ -212,8 +212,8 @@ export const translations = {
       subtitle: "Mostrando i miei ultimi lavori",
       viewProject: "Vedi Progetto",
       project1: {
-        title: "Progetto Uno",
-        description: "Descrizione del primo progetto. Tecnologie utilizzate e sfide superate.",
+        title: "Giochi Arcade Retro",
+        description: "Una piattaforma web che offre giochi arcade classici giocabili direttamente nel browser. Sviluppata con tecnologie web moderne per riportare in vita esperienze di gioco nostalgiche.",
       },
       project2: {
         title: "Progetto Due",

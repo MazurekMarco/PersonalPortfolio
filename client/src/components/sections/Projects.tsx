@@ -24,7 +24,9 @@ export default function Projects() {
     {
       title: "projects.project1.title",
       description: "projects.project1.description",
-      tags: ["React", "Tailwind"]
+      tags: ["React", "Tailwind"],
+      image: "/project1-screenshot.png",
+      link: "https://mazurekmarco.github.io/retro-arcade/"
     },
     {
       title: "projects.project2.title",
@@ -50,10 +52,10 @@ export default function Projects() {
           viewport={{ once: true }}
           variants={fadeInUp}
         >
-          <h2 className="text-3xl md:text-4xl font-display font-bold mb-6 bg-gradient-to-r from-primary-600 to-secondary-500 bg-clip-text text-transparent">
+          <h2 className="text-3xl md:text-4xl font-display font-bold mb-6 text-gray-900 dark:text-white">
             {t("projects.title")}
           </h2>
-          <p className="text-lg text-gray-600 dark:text-gray-300">
+          <p className="text-lg text-gray-700 dark:text-gray-200">
             {t("projects.subtitle")}
           </p>
         </motion.div>
@@ -74,11 +76,30 @@ export default function Projects() {
             >
               <div className="relative h-48 overflow-hidden bg-gray-200 dark:bg-gray-700">
                 <div className="absolute inset-0 bg-gradient-to-br from-primary-500/60 to-secondary-500/60 opacity-0 group-hover:opacity-60 transition duration-300"></div>
-                <div className="h-full bg-gray-300 dark:bg-gray-700 animate-pulse"></div>
+                {project.image ? (
+                  <img 
+                    src={project.image} 
+                    alt={t(project.title)}
+                    className="w-full h-full object-cover"
+                  />
+                ) : (
+                  <div className="h-full bg-gray-300 dark:bg-gray-700 animate-pulse"></div>
+                )}
                 <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300">
-                  <button className="px-4 py-2 bg-white dark:bg-gray-900 text-primary-600 dark:text-primary-400 rounded-lg font-medium shadow-lg">
-                    {t("projects.viewProject")}
-                  </button>
+                  {project.link ? (
+                    <a 
+                      href={project.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="px-4 py-2 bg-white dark:bg-gray-900 text-primary-600 dark:text-primary-400 rounded-lg font-medium shadow-lg hover:bg-gray-50 dark:hover:bg-gray-800 transition duration-300"
+                    >
+                      {t("projects.viewProject")}
+                    </a>
+                  ) : (
+                    <button className="px-4 py-2 bg-white dark:bg-gray-900 text-primary-600 dark:text-primary-400 rounded-lg font-medium shadow-lg">
+                      {t("projects.viewProject")}
+                    </button>
+                  )}
                 </div>
               </div>
               <div className="p-6 flex-1 flex flex-col">

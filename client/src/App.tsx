@@ -9,18 +9,20 @@ import { useEffect } from "react";
 
 function Router() {
   useEffect(() => {
-    // Handle the base URL for GitHub Pages
-    const path = window.location.pathname;
-    const baseUrl = '/PersonalPortfolio';
-    
-    if (path === baseUrl || path === baseUrl + '/') {
-      window.history.replaceState(null, '', baseUrl + '/');
+    // Handle the base URL for GitHub Pages in production only
+    if (process.env.NODE_ENV === 'production') {
+      const path = window.location.pathname;
+      const baseUrl = '/PersonalPortfolio';
+      
+      if (path === baseUrl || path === baseUrl + '/') {
+        window.history.replaceState(null, '', baseUrl + '/');
+      }
     }
   }, []);
 
   return (
     <Switch>
-      <Route path="/PersonalPortfolio/" component={Home} />
+      <Route path={process.env.NODE_ENV === 'production' ? "/PersonalPortfolio/" : "/"} component={Home} />
       <Route component={NotFound} />
     </Switch>
   );
