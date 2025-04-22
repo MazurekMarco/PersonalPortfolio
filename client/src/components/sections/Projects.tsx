@@ -33,7 +33,7 @@ export default function Projects() {
       description: "projects.project2.description",
       tags: ["Node.js", "MongoDB", "React", "TypeScript"],
       image: "./project2-screenshot.png",
-      link: "#" // You can add the actual link when available
+      link: "https://mazurekmarco.github.io/Advanced-Schedular/"
     },
     {
       title: "projects.project3.title",
