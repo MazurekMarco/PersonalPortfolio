@@ -11,3 +11,5 @@ Visit the live site at: https://mazurekmarco.github.io/PersonalPortfolio/
 - Vite
 - Tailwind CSS
 - Shadcn/ui 
+
+Last deployment attempt: $(date) 
