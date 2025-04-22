@@ -78,8 +78,8 @@ export const translations = {
         description: "A web-based platform featuring classic arcade games playable directly in your browser. Built with modern web technologies to bring nostalgic gaming experiences to life.",
       },
       project2: {
-        title: "Project Two",
-        description: "Description of the second project. Technologies used and challenges overcome.",
+        title: "Advanced Scheduler",
+        description: "A fully functional and responsive advanced scheduling application built with modern web technologies. Features a clean interface for managing appointments and events with real-time updates.",
       },
       project3: {
         title: "Project Three",
@@ -216,8 +216,8 @@ export const translations = {
         description: "Una piattaforma web che offre giochi arcade classici giocabili direttamente nel browser. Sviluppata con tecnologie web moderne per riportare in vita esperienze di gioco nostalgiche.",
       },
       project2: {
-        title: "Progetto Due",
-        description: "Descrizione del secondo progetto. Tecnologie utilizzate e sfide superate.",
+        title: "Scheduler Avanzato",
+        description: "Un'applicazione di pianificazione avanzata completamente funzionale e responsive, costruita con tecnologie web moderne. Presenta un'interfaccia pulita per la gestione di appuntamenti ed eventi con aggiornamenti in tempo reale.",
       },
       project3: {
         title: "Progetto Tre",

@@ -31,7 +31,9 @@ export default function Projects() {
     {
       title: "projects.project2.title",
       description: "projects.project2.description",
-      tags: ["Node.js", "MongoDB"]
+      tags: ["Node.js", "MongoDB", "React", "TypeScript"],
+      image: "./project2-screenshot.png",
+      link: "#" // You can add the actual link when available
     },
     {
       title: "projects.project3.title",
