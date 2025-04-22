@@ -6,7 +6,7 @@ export default function Hero() {
 
   const handleDownloadCV = () => {
     // This will work on both local development and GitHub Pages
-    window.open('/cv.pdf', '_blank');
+    window.open('/CV.pdf', '_blank');
   };
 
   return (
