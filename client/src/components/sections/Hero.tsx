@@ -5,9 +5,7 @@ export default function Hero() {
   const { t } = useLanguage();
 
   const handleDownloadCV = () => {
-    // Use the correct base URL for GitHub Pages in production
-    const baseUrl = import.meta.env.PROD ? '/PersonalPortfolio' : '';
-    window.open(`${baseUrl}/CV.pdf`, '_blank');
+    window.open('https://mazurekmarco.github.io/PersonalPortfolio/CV.pdf', '_blank');
   };
 
   return (
