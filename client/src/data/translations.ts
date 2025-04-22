@@ -82,8 +82,8 @@ export const translations = {
         description: "A fully functional and responsive advanced scheduling application built with modern web technologies. Features a clean interface for managing appointments and events with real-time updates.",
       },
       project3: {
-        title: "Project Three",
-        description: "Description of the third project. Technologies used and challenges overcome.",
+        title: "CV Builder",
+        description: "A professional CV builder application that helps users create formal and polished curriculum vitae. Features an intuitive interface with real-time preview and PDF export capabilities.",
       },
       comingSoon: {
         title: "More Projects Coming Soon",
@@ -220,8 +220,8 @@ export const translations = {
         description: "Un'applicazione di pianificazione avanzata completamente funzionale e responsive, costruita con tecnologie web moderne. Presenta un'interfaccia pulita per la gestione di appuntamenti ed eventi con aggiornamenti in tempo reale.",
       },
       project3: {
-        title: "Progetto Tre",
-        description: "Descrizione del terzo progetto. Tecnologie utilizzate e sfide superate.",
+        title: "Costruttore di CV",
+        description: "Un'applicazione professionale per la creazione di curriculum vitae che aiuta gli utenti a creare CV formali e professionali. Presenta un'interfaccia intuitiva con anteprima in tempo reale e capacità di esportazione PDF.",
       },
       comingSoon: {
         title: "Altri Progetti in Arrivo",

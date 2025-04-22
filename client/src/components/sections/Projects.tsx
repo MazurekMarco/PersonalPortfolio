@@ -38,7 +38,9 @@ export default function Projects() {
     {
       title: "projects.project3.title",
       description: "projects.project3.description",
-      tags: ["Python", "Django"]
+      tags: ["React", "TypeScript", "Tailwind CSS", "PDF Generation"],
+      image: "./project3-screenshot.png",
+      link: "https://mazurekmarco.github.io/CV-Builder/"
     }
   ];
 
