@@ -40,7 +40,7 @@ export default function Projects() {
       description: "projects.project3.description",
       tags: ["React", "TypeScript", "Tailwind CSS", "PDF Generation"],
       image: "./project3-screenshot.png",
-      link: "https://mazurekmarco.github.io/CV-Builder/"
+      link: "https://mazurekmarco.github.io/ResumeRapid/"
     }
   ];
 
